@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Flaskr</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript">
+    // 表单验证
+    function validate_form(form){
+      with(form){
+        var page = Number(target_page.value);
+        if(isNaN(page) || page>{{max_page}} || page < 1){
+          alert("页数填写不合法");
+          target_page.focus();
+          return false;
+        }
+        return true;
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <!-- 数据显示表 -->
+      <table id="table-4">
+        <thead>
+          <tr>
+            <th>标题</th>
+            <th>时间</th>
+          </tr>
+        </thead>
+        {% for item in items %}
+        <tr>
+          <td><a title="{{ item.title }}" href="{{item.url}}" target="_blank">{{item.title}}</a></td>
+          <td>{{item.date}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <!-- 底部分页栏 -->
+      <table id="table-nav">
+        <tr>
+          <td><a href="/1" title="首页">首页</a></td>
+          <td>
+            {% if current_page > 1 %}
+              <a href="/{{current_page - 1}}" title="上一页">上一页</a>
+            {% endif %}
+          </td>
+          <td>
+            <form action="{{url_for('goto')}}" onsubmit="return validate_form(this)"  method="post">
+              <input type="text" name="target_page" style="width:50px;text-align:right" value="{{current_page}}">
+              {{- '/%d'|format(max_page) -}}
+              <input type="submit" value="Go">
+            </form>
+          </td>
+          <td>
+            {% if current_page < max_page %}
+              <a href="/{{current_page + 1}}" title="下一页">下一页</a>
+            {% endif %}
+          </td>
+          <td><a href="/{{max_page}}" title="末页">末页</a></td>
+
+        </tr>
+      </table>
+    </div>
+
+    <!-- 两侧翻页 -->
+    <div id="side-nav">
+      {% if current_page > 1 %}
+        <a class="prev" href="/{{current_page - 1}}" title="上一页">上一页</a>
+      {% endif %}
+      {% if current_page < max_page %}
+        <a class="next" href="/{{current_page + 1}}" title="下一页">下一页</a>
+      {% endif %}
+    </div>
+  </body>
+</html>

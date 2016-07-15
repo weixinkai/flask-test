@@ -1,0 +1,50 @@
+
+div#container {
+  width: 600px;
+  position: absolute;
+  left: 50%;
+  margin-left: -300px;
+  top: 50px;
+}
+
+/* Border styles */
+#table-4 thead, #table-4 tr {
+border-top-width: 1px;
+border-top-style: solid;
+border-top-color: rgb(211, 202, 221);
+}
+#table-4 {
+  width: 600px;
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: rgb(211, 202, 221);
+}
+
+/* Padding and font style */
+#table-4 td, #table-4 th {
+padding: 5px 10px;
+font-size: 12px;
+font-family: Verdana;
+color: rgb(95, 74, 121);
+}
+
+/* Alternating background colors */
+#table-4 tr:nth-child(even) {background: rgb(223, 216, 232)}
+#table-4 tr:nth-child(odd) {background: #FFF}
+
+/*底部分页栏样式*/
+#table-nav {width: 600px;margin-top: 5px;}
+#table-nav td{width: 120px;}
+#table-nav a{
+  height: 40px;
+  display: block;
+  text-align: center;
+  padding-top: 20px;
+}
+#table-nav a:hover{background-color: rgb(130, 220, 250);}
+
+/*两侧翻页样式*/
+#side-nav a.prev,a.next{display:block;width:100px;height:100px;position:fixed;left:50%; top:50%;margin-top:-50px;padding-top: 50px;text-align: center;}
+#side-nav a.prev{margin-left: -400px;}
+#side-nav a.next{margin-left: 300px;}
+#side-nav a.prev:hover,a.next:hover{background-color:rgb(211, 202, 221);}
