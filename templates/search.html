@@ -35,7 +35,7 @@
       <form action="{{url_for('search')}}" method="get" target="_blank" onsubmit="return validate_search(this)">
         <table >
           <tr>
-            <td><input type="text" name="title"></td>
+            <td><input type="text" name="title" value="{{condition}}"></td>
             <td><input type="submit" value="search"></td>
           </tr>
         </table>
@@ -60,26 +60,26 @@
       <!-- 底部分页栏 -->
       <table id="table-nav">
         <tr>
-          <td><a href="{{url_for('show_items', page=1)}}" title="首页">首页</a></td>
+          <td><a href="{{url_for('search', page=1, title=condition)}}" title="首页">首页</a></td>
           <td>
             {% if current_page > 1 %}
-              <a href="{{url_for('show_items', page=current_page-1)}}" title="上一页">上一页</a>
+              <a href="{{url_for('search', page=current_page-1, title=condition)}}" title="上一页">上一页</a>
             {% endif %}
           </td>
           <td>
-            <form action="{{url_for('goto')}}" onsubmit="return validate_form(this)"  method="post">
+            <form action="{{url_for('goto', title=condition)}}" onsubmit="return validate_form(this)"  method="post">
               <input type="text" name="target_page" style="width:50px;text-align:right" value="{{current_page}}">
               {{- '/%d'|format(max_page) -}}
               <input type="submit" value="Go">
-              <input type="text" name="type" value="show" hidden="true">
+              <input type="text" name="type" value="search" hidden="true">
             </form>
           </td>
           <td>
             {% if current_page < max_page %}
-              <a href="{{url_for('show_items', page=current_page+1)}}" title="下一页">下一页</a>
+              <a href="{{url_for('search', page=current_page+1, title=condition)}}" title="下一页">下一页</a>
             {% endif %}
           </td>
-          <td><a href="{{url_for('show_items', page=max_page)}}" title="末页">末页</a></td>
+          <td><a href="{{url_for('search', page=max_page, title=condition)}}" title="末页">末页</a></td>
 
         </tr>
       </table>
@@ -88,10 +88,10 @@
     <!-- 两侧翻页 -->
     <div id="side-nav">
       {% if current_page > 1 %}
-        <a class="prev" href="{{url_for('show_items', page=current_page-1)}}" title="上一页">上一页</a>
+        <a class="prev" href="{{url_for('search', page=current_page-1, title=condition)}}" title="上一页">上一页</a>
       {% endif %}
       {% if current_page < max_page %}
-        <a class="next" href="{{url_for('show_items', page=current_page+1)}}" title="下一页">下一页</a>
+        <a class="next" href="{{url_for('search', page=current_page+1, title=condition)}}" title="下一页">下一页</a>
       {% endif %}
     </div>
   </body>
