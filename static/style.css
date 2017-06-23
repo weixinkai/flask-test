@@ -30,7 +30,7 @@ color: rgb(95, 74, 121);
 /* Alternating background colors */
 #table-4 tr:nth-child(even) {background: rgb(223, 216, 232)}
 #table-4 tr:nth-child(odd) {background: #FFF}
-
+#table-4 a:visited {color: red}
 /*底部分页栏样式*/
 #table-nav {width: 600px;margin-top: 5px;}
 #table-nav td{width: 120px;}
